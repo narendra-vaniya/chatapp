@@ -1,4 +1,5 @@
 import 'package:chatapp/api/reuseWidget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MessagePage extends StatefulWidget {
@@ -11,27 +12,32 @@ class _MessagePageState extends State<MessagePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: FittedBox(child: Text("Narendra vaniya"),),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: (){
+        leading: IconButton(
+          onPressed: (){Navigator.pop(context);},
+          icon: Icon(Icons.arrow_back_ios,color: Colors.grey,),
+        ),
+        backgroundColor: Colors.white,
+        title: FittedBox(child: Text("Narendra vaniya",style: reuse.getAppbarTextStyle(),),),
 
-            },
-          )
-        ],
        
       ),
       
       body: Container(
-        padding: EdgeInsets.all(5),
+        color: Theme.of(context).canvasColor,
+        padding: EdgeInsets.all(0),
         child: Column(
           children: <Widget>[
             Expanded(
               flex: 4,
-              child: Container(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20),bottomRight: Radius.circular(20))
+                ),
+              ),
             ),
             SingleChildScrollView(
+              padding: EdgeInsets.all(10),
               child: sendMessageForm()
             )
           ],
@@ -47,27 +53,34 @@ class _MessagePageState extends State<MessagePage> {
 sendMessageForm(){
   final _key = GlobalKey<FormState>();
   return Form(
+    
    child: Row(
+
      children: <Widget>[
        Expanded(
          flex: 4,
-         child: TextFormField(
-           decoration: InputDecoration(
-             hintText: 'Type a mess..',
-             contentPadding: EdgeInsets.all(10),
-             border: OutlineInputBorder(
-               borderRadius: BorderRadius.circular(50)
-             )
-           )
-         ),
+         child: ClipRRect(
+           borderRadius: BorderRadius.circular(10),
+           child: TextFormField(
+                maxLines: 1,
+               decoration: InputDecoration(
+                 suffixIcon: IconButton(
+                   icon: Icon(Icons.send),
+                   onPressed: (){
+                     print("sdfsdf");
+                   },
+                 ),
+
+                 filled: true,
+                 fillColor: Colors.white,
+                 hintText: 'Type a mess..',
+                 //contentPadding: EdgeInsets.all(10),
+                 border:InputBorder.none,
+               )
+           ),
+         )
        ),
-       Expanded(
-         flex: 1,
-         child: IconButton(
-           icon: Icon(Icons.send,color: Reuse.getColor(),),
-           onPressed: (){},
-         ),
-       )
+      
      ],
    ),
   );

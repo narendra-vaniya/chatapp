@@ -20,10 +20,13 @@ class _SignUpFormState extends State<SignUpForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            SizedBox(
+              height: _screen.getHeight*0.04,
+            ),
             //!Email Textbox
             Container(
               child: TextFormField(
-                decoration: Reuse.textBoxStyle(" Enter email", context),
+                decoration: reuse.textBoxStyle(" Enter email", context),
                 keyboardType: TextInputType.emailAddress,
               ),
             ),
@@ -33,7 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
             //!Password TextBox
             Container(
               child: TextFormField(
-                decoration: Reuse.textBoxStyle(" Enter password", context),
+                decoration: reuse.textBoxStyle(" Enter password", context),
               ),
             ),
             SizedBox(
@@ -42,37 +45,37 @@ class _SignUpFormState extends State<SignUpForm> {
             //!Sign up Button
             Container(
               width: double.infinity,
-              height:  (_screen.getHeight*0.055<45)?_screen.getHeight*0.055:null,
+              height:  (_screen.getHeight*0.04<45)?_screen.getHeight*0.055:null,
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: RaisedButton(
                   child: FittedBox(
                     child: Text(
                       "Sign up",
-                      style: Reuse.getButtonTextStyle(),
+                      style: reuse.getButtonTextStyle(),
                     ),
                     fit: BoxFit.fill,
                   ),
-                  color: Reuse.getColor(),
-                  shape: Reuse.getButtonStyle(),
+                  color: Theme.of(context).canvasColor,
+                  shape: reuse.getButtonStyle(),
                   onPressed: () {},
                 ),),
-                SizedBox(height: 10,),
+                SizedBox(height: 15,),
             //!Login with Google button
             Container(
               width: double.infinity,
-              height: (_screen.getHeight*0.055<45)?_screen.getHeight*0.055:null,
+              height: (_screen.getHeight*0.04<45)?_screen.getHeight*0.055:null,
               
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: RaisedButton(
                 child: FittedBox(
                   child: Text(
                     "Continue with Google",
-                    style: Reuse.getButtonTextStyle(),
+                    style: reuse.getButtonTextStyle(),
                   ),
                   fit: BoxFit.fill,
                 ),
                 color: Colors.redAccent,
-                shape: Reuse.getButtonStyle(),
+                shape: reuse.getButtonStyle(),
                 onPressed: () {},
               ),
             ),

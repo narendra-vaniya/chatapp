@@ -1,8 +1,8 @@
-import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:chatapp/ui/pages/allchatListPage.dart';
 import 'package:chatapp/ui/pages/allcontactsPage.dart';
 import 'package:chatapp/ui/pages/requestPage.dart';
+import 'package:chatapp/ui/pages/settingPage.dart';
 import 'package:chatapp/ui/pages/userAccountPage.dart';
 import 'package:flutter/material.dart';
 
@@ -12,45 +12,27 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  int index=0;
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     final _screen = ScreenInfo(context);
     return Scaffold(
+      backgroundColor: Theme.of(context).canvasColor,
       bottomNavigationBar: BottomNavigationBar(
-        
         currentIndex: index,
-        showUnselectedLabels: true,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Reuse.getColor(),
-        backgroundColor: Colors.red,
-        iconSize: _screen.getWidth*0.07,
-        elevation: 1,
-        type: BottomNavigationBarType.shifting,
-        onTap: (value){
+        unselectedItemColor: Color.fromRGBO(131, 133, 161, 1),
+        selectedItemColor: Colors.white,
+        iconSize: _screen.getWidth * 0.09,
+        elevation: 0,
+        onTap: (value) {
           setState(() {
-            index=value;
+            index = value;
           });
         },
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            title: Text("Chat")
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_add),
-            title: Text("Request")
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            title: Text("Contact")
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_box),
-            title: Text("Account")
-          ),
-          
-          
+          BottomNavigationBarItem(icon: Icon(Icons.bubble_chart), title: Text("")),
+          BottomNavigationBarItem(icon: Icon(Icons.people), title: Text("")),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), title: Text("")),
         ],
       ),
       body: _changeWidget(index),
@@ -58,9 +40,8 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
-_changeWidget(index){
-
-  switch(index){
+_changeWidget(index) {
+  switch (index) {
     case 0:
       return AllChatListPage();
       break;
@@ -68,12 +49,8 @@ _changeWidget(index){
       return RequestPage();
       break;
     case 2:
-      return AllContactsPage();
+      return SettingPage();
       break;
-    case 3:
-      return UserAccountPage();
-      break;
-  }
-    
 
+  }
 }

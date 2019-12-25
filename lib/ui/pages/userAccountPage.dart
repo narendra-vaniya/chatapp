@@ -17,7 +17,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         leading: Container(),
         title: Text(
           "Your profile",
-          style: Reuse.getAppbarTextStyle(),
+          style: reuse.getAppbarTextStyle(),
         ),
         centerTitle: true,
         actions: <Widget>[

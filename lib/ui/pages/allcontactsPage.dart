@@ -13,7 +13,10 @@ class _AllContactsPageState extends State<AllContactsPage> {
     return Scaffold(
       appBar: AppBar(
         leading: Container(),
-        title: Text("Suggested for you",style: Reuse.getAppbarTextStyle(),),
+        title: Text(
+          "Suggested for you",
+          style: reuse.getAppbarTextStyle(),
+        ),
         centerTitle: true,
       ),
       body: AllContacts(),

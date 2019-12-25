@@ -18,48 +18,51 @@ class _SignInFormState extends State<SignInForm> {
       child: Container(
         margin: EdgeInsets.all(_screen.getWidth * 0.1),
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
+            SizedBox(
+              height: _screen.getHeight*0.05,
+            ),
             //!Email Textbox
             Container(
               child: TextFormField(
-                decoration: Reuse.textBoxStyle(" Enter email", context),
+                decoration: reuse.textBoxStyle(" Enter email", context),
                 keyboardType: TextInputType.emailAddress,
               ),
             ),
             SizedBox(
-              height: _screen.getHeight * 0.02,
+              height: _screen.getHeight * 0.025,
             ),
             //!Password TextBox
             Container(
               child: TextFormField(
-                decoration: Reuse.textBoxStyle(" Enter password", context),
+                decoration: reuse.textBoxStyle(" Enter password", context),
               ),
             ),
             SizedBox(
-              height: _screen.getHeight * 0.03,
+              height: _screen.getHeight * 0.035,
             ),
             //!Sign in Button
             Container(
               width: double.infinity,
-              
-              height: (_screen.getHeight*0.055<45)?_screen.getHeight*0.055:null,
-                margin: EdgeInsets.symmetric(horizontal: 10),
+              height: (_screen.getHeight*0.04<45)?_screen.getHeight*0.055:null,
+                margin: EdgeInsets.symmetric(horizontal: 5),
                 child: RaisedButton(
                   child: FittedBox(
                     child: Text(
                       "Sign in",
-                      style: Reuse.getButtonTextStyle(),
+                      style: reuse.getButtonTextStyle(),
                     ),
                     fit: BoxFit.fill,
                   ),
-                  color: Reuse.getColor(),
-                  shape: Reuse.getButtonStyle(),
+                  color: Theme.of(context).canvasColor,
+                  shape: reuse.getButtonStyle(),
                   onPressed: () {
                     Navigator.pushNamed(context, '/MainPage');
                   },
-                )),
-            SizedBox(height: _screen.getHeight*0.045,),
+                ),),
+           SizedBox(height: _screen.getHeight*0.1,),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(

@@ -1,14 +1,11 @@
-import 'package:chatapp/api/reuseWidget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-class SendRequests extends StatefulWidget {
+class ReceiveRequest extends StatefulWidget {
   @override
-  _SendRequestsState createState() => _SendRequestsState();
+  _ReceiveRequestState createState() => _ReceiveRequestState();
 }
 
-class _SendRequestsState extends State<SendRequests> {
+class _ReceiveRequestState extends State<ReceiveRequest> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,12 +29,18 @@ class _SendRequestsState extends State<SendRequests> {
             ),
             title: Text("Your name"),
             trailing: FittedBox(
-              child: Chip(
-                label: Text(
-                  "Pending",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
+              child: Row(
+                children: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.check),
+                    onPressed: (){},
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.close),
+                    onPressed: (){},
+                  )
+                ],
+              )
             ),
           );
         },

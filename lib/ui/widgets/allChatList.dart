@@ -1,5 +1,7 @@
-import 'package:chatapp/main.dart';
+import 'package:chatapp/api/reuseWidget.dart';
+import 'package:chatapp/api/screeninfo.dart';
 import 'package:chatapp/ui/pages/messagePage.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AllChatList extends StatefulWidget {
@@ -10,28 +12,44 @@ class AllChatList extends StatefulWidget {
 class _AllChatListState extends State<AllChatList> {
   @override
   Widget build(BuildContext context) {
+    final _screen = ScreenInfo(context);
     return Container(
-      padding: EdgeInsets.all(5),
-      child: ListView.builder(
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Card(
-            elevation: 0,
-            child: ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context)=>MessagePage()
-                  ),);
-              },
-              contentPadding: EdgeInsets.all(5),
-              leading: Image.asset('images/user.JPG'),
-              title: Text("Meet"),
-            ),
-          );
-        },
+      padding: EdgeInsets.only(top: 0,bottom: 15,left: 10,right: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomRight: Radius.circular(30),
+          bottomLeft: Radius.circular(30),
+        ),
       ),
+      child: ListDesign(),
     );
   }
+}
+
+ListDesign() {
+  return ListView.builder(
+    itemCount: 10,
+    itemBuilder: (context, index) {
+      return Card(
+        elevation: 0,
+        child: ListTile(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => MessagePage()),
+            );
+          },
+          contentPadding: EdgeInsets.all(5),
+          leading: ClipRRect(
+            child: Image.asset('images/user.JPG',),
+            borderRadius: BorderRadius.circular(200),
+
+          ),
+          title: Text("Meet",style:reuse.getUserTextStyle(),),
+          subtitle: Text(""),
+        ),
+      );
+    },
+  );
 }
