@@ -1,3 +1,7 @@
+/*
+   This page is contain Setting like profile,find friends and delete account.
+ */
+
 import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,10 +31,14 @@ class _SettingPageState extends State<SettingPage> {
   }
 }
 
+
+
+//Design of setting Page
 settingComponetDesign(context) {
   final _screen = ScreenInfo(context);
   return ListView(
     children: <Widget>[
+      //Appbar
       AppBar(
         leading: Container(),
         elevation: 0,
@@ -40,19 +48,22 @@ settingComponetDesign(context) {
           style: reuse.getAppbarTextStyle(),
         ),
       ),
+      //User name and image
       Card(
         elevation: 0,
         child: ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, '/UserProfile');
+          },
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(500),
             child: Image.asset('images/user.JPG'),
           ),
-          title: Text("Narendra vaniya",style:reuse.getSmallTextStyle(context),),
+          title: Text("Narendra vaniya"),
           subtitle: Text("Edit your profile"),
         ),
       ),
-
+      //Divider
       Divider(
         height: 1,
         color: Theme.of(context).canvasColor,
@@ -64,34 +75,35 @@ settingComponetDesign(context) {
         child: ListTile(
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(500),
-            child: Icon(
-              Icons.delete_outline,
-              
-            ),
+            child: Image.asset('images/find_fri.png'),
           ),
           title: Text(
             "Find your friends",
-            style:reuse.getSmallTextStyle(context),
+            style: reuse.getSmallTextStyle(context),
           ),
           subtitle: Text("Send a request and chat"),
         ),
       ),
-
+      //Divider
       Divider(
         color: Theme.of(context).canvasColor,
         height: 0,
-        indent: 100,
+        indent: 85,
       ),
-
+      //!Delete account
       ListTile(
-        leading: Icon(Icons.delete),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(500),
+          child: Image.asset('images/delete_acc.png'),
+        ),
         title: Text("Delete my account"),
         subtitle: Text("After deleteing, you lose your data"),
       ),
+      //!Divider
       Divider(
         color: Theme.of(context).canvasColor,
         height: 0,
-        indent: 100,
+        indent: 85,
       ),
     ],
   );

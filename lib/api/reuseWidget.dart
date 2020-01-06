@@ -1,7 +1,7 @@
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:flutter/material.dart';
 
-class resue {
+class Resue {
   TextStyle getUserTextStyle() {
     return TextStyle(color: Colors.black, fontWeight: FontWeight.w400);
   }
@@ -29,7 +29,7 @@ class resue {
   }
 
   ShapeBorder getButtonStyle() {
-    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(10));
+    return RoundedRectangleBorder(borderRadius: BorderRadius.circular(20));
   }
 
 //Small font
@@ -40,10 +40,15 @@ class resue {
     return TextStyle(
       color: Colors.black,
       letterSpacing: 1,
-      fontSize:MediaQuery.of(context).devicePixelRatio*5.5
     );
   }
+//Fittedbox text
+  Widget MyText(msg){
+    return FittedBox(
+      child: Text(msg),
 
+    );
+  }
   TextStyle getButtonTextStyle() {
     return TextStyle(
       color: Colors.white,
@@ -60,4 +65,4 @@ class resue {
   }
 }
 
-resue reuse = resue();
+Resue reuse = Resue();

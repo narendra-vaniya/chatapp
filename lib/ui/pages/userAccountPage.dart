@@ -1,3 +1,6 @@
+/*
+  This page contain user() profile
+ */
 import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/ui/widgets/userProfile.dart';
 import 'package:flutter/material.dart';
@@ -13,19 +16,27 @@ class _UserAccountPageState extends State<UserAccountPage> {
     return Scaffold(
       //!App bar
       appBar: AppBar(
-        
-        leading: Container(),
+        elevation: 0,
+        backgroundColor: reuse.getAppbarColor(),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme.of(context).canvasColor,
+          ),
+        ),
         title: Text(
-          "Your profile",
+          "My profile",
           style: reuse.getAppbarTextStyle(),
         ),
-        centerTitle: true,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
             tooltip: 'Edit profile',
             onPressed: () {
-              Navigator.pushNamed(context,'/UserAccountEditPage');
+              Navigator.pushNamed(context, '/UserAccountEditPage');
             },
           )
         ],
