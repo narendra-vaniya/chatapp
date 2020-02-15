@@ -4,6 +4,7 @@ import 'package:chatapp/api/screeninfo.dart';
 import 'package:chatapp/ui/widgets/loadingbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -14,10 +15,15 @@ class _SignInFormState extends State<SignInForm> {
   final _formkey = GlobalKey<FormState>();
   String _email;
   String _pwd;
-
+  
   @override
   Widget build(BuildContext context) {
     final _screen = ScreenInfo(context);
+    ScreenUtil.init(context,
+        width: _screen.getWidth,
+        height: _screen.getHeight,
+        allowFontScaling: true);
+    ScreenUtil().setSp(24, allowFontScalingSelf: true);
     return Form(
       key: _formkey,
       child: Container(
@@ -58,9 +64,6 @@ class _SignInFormState extends State<SignInForm> {
             //!Sign in Button
             Container(
               width: double.infinity,
-              height: (_screen.getHeight * 0.04 < 45)
-                  ? _screen.getHeight * 0.055
-                  : null,
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: RaisedButton(
                 child: FittedBox(

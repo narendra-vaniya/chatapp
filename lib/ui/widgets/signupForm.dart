@@ -5,6 +5,7 @@ import 'package:chatapp/ui/widgets/loadingbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/model/userdata.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -15,7 +16,8 @@ class _SignUpFormState extends State<SignUpForm> {
   //!Variable
   final _formkey = GlobalKey<FormState>();
   String _email, _pwd;
-  String _profile="https://firebasestorage.googleapis.com/v0/b/mychatapp-2410.appspot.com/o/download.png?alt=media&token=969f1015-a600-41fb-92ea-358ced933008";
+  String _profile =
+      "https://firebasestorage.googleapis.com/v0/b/mychatapp-2410.appspot.com/o/download%20.png?alt=media&token=3befcf31-af97-4c55-88e3-02c4abc1df23";
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,7 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             SizedBox(
-              height: _screen.getHeight * 0.02,
+              height: ScreenUtil.screenHeight * 0.02,
             ),
             //!Password TextBox
             Container(
@@ -55,14 +57,11 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             SizedBox(
-              height: _screen.getHeight * 0.03,
+              height: ScreenUtil.screenHeight * 0.03,
             ),
             //!Sign up Button
             Container(
               width: double.infinity,
-              height: (_screen.getHeight * 0.04 < 45)
-                  ? _screen.getHeight * 0.055
-                  : null,
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: RaisedButton(
                 child: FittedBox(
@@ -79,27 +78,23 @@ class _SignUpFormState extends State<SignUpForm> {
                     _formkey.currentState.save();
                     showLoading(context, "Creating your account..");
                     //name,email,pwd,about,profile
-                    AuthResult _result = await authApi.signup(context,
-                          User("",_email,_pwd,"",_profile),
-                        );
+                    AuthResult _result = await authApi.signup(
+                      context,
+                      User("", _email, _pwd, "", _profile),
+                    );
                     (_result != null)
-                        ?(_result.additionalUserInfo.isNewUser)
-                            ? Navigator.pushNamedAndRemoveUntil(context, '/UserProfileEdit', (Route r) => false)
-                            : Navigator.pushNamedAndRemoveUntil(context, '/MainPage', (Route r) => false)
+                        ? Navigator.pushNamed(context, '/CheckEmail')
                         : null;
                   }
                 },
               ),
             ),
             SizedBox(
-              height: 15,
+              height: ScreenUtil.screenHeight*0.005
             ),
             //!Login with Google button
             Container(
               width: double.infinity,
-              height: (_screen.getHeight * 0.04 < 45)
-                  ? _screen.getHeight * 0.055
-                  : null,
               margin: EdgeInsets.symmetric(horizontal: 10),
               child: RaisedButton(
                 child: FittedBox(

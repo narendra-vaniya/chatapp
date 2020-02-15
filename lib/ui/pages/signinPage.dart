@@ -1,12 +1,19 @@
+import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:chatapp/ui/widgets/signinForm.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _screen = ScreenInfo(context);
+    ScreenInfo _screen = ScreenInfo(context);
+    ScreenUtil.init(context,
+        width: _screen.getWidth,
+        height: _screen.getHeight,
+        allowFontScaling: true);
+    ScreenUtil().setSp(24, allowFontScalingSelf: true);
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
@@ -16,15 +23,11 @@ class SignInPage extends StatelessWidget {
             //!Upper part of sign up page
             Expanded(
               flex: 2,
-              child: Container(
-                width: _screen.getWidth * 0.6,
-                padding: EdgeInsets.all(45),
-                color: Theme.of(context).canvasColor,
-                child: FittedBox(
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(color: Colors.white),
-                  ),
+              child: Center(
+                child: Text(
+                  "Sign in",
+                  style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20), color: Colors.white),
                 ),
               ),
             ),

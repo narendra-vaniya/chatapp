@@ -29,7 +29,7 @@ class _AllChatListState extends State<AllChatList> {
 
 ListDesign() {
   return ListView.builder(
-    itemCount: 10,
+    itemCount: 3,
     itemBuilder: (context, index) {
       return Card(
         elevation: 0,
@@ -37,7 +37,7 @@ ListDesign() {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => MessagePage()),
+              MaterialPageRoute(builder: (context) => MessagePage(index)),
             );
           },
           contentPadding: EdgeInsets.all(5),
@@ -46,7 +46,7 @@ ListDesign() {
             borderRadius: BorderRadius.circular(200),
 
           ),
-          title: Text("Meet",style:reuse.getUserTextStyle(),),
+          title: Text("Room ${index+1}",style:reuse.getUserTextStyle(),),
           subtitle: Text(""),
         ),
       );

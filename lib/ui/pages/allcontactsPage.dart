@@ -11,13 +11,19 @@ class _AllContactsPageState extends State<AllContactsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: Container(),
+      backgroundColor: Colors.white,
+      appBar:AppBar(
+        leading:  IconButton(
+          icon: Icon(Icons.arrow_back_ios,color: Theme.of(context).canvasColor,),
+            onPressed: () {
+              Navigator.pop(context);
+            },),
+        elevation: 0,
+        backgroundColor: reuse.getAppbarColor(),
         title: Text(
-          "Suggested for you",
+          "Make a friends",
           style: reuse.getAppbarTextStyle(),
         ),
-        centerTitle: true,
       ),
       body: AllContacts(),
     );

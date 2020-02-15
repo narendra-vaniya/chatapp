@@ -33,7 +33,7 @@ class _UserAccountPageState extends State<UserAccountPage> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: Icon(Icons.edit,color: Theme.of(context).canvasColor,),
             tooltip: 'Edit profile',
             onPressed: () {
               Navigator.pushNamed(context, '/UserAccountEditPage');

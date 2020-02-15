@@ -7,16 +7,25 @@ import 'package:chatapp/model/userdata.dart';
 
 class Auth {
   ///Firebase Auth instance
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   //!Firebase Firestore instance
-  Firestore _db = Firestore.instance;
+  final Firestore _db = Firestore.instance;
 
   //Login State
   Future<FirebaseUser> loginState()async{
+
     return await _auth.currentUser();
   }
-
-  //Firebase Login
+  //!Get email
+  Future<String> getEmail()async{
+    String _email;
+    await _auth.currentUser().then((result){
+      _email =  result.email;
+    });
+    print("Db email  = $_email");
+    return _email;
+  }
+  //!Firebase Login
   Future<AuthResult> signin(context, e, p) async {
     print("Enter");
     try {
@@ -40,13 +49,14 @@ class Auth {
     }
   }
 
-  //Firebase Create Account
+  //!Firebase Create Account
   Future<AuthResult> signup(context,User data) async{
     print("enter");
-    try {
-      return await _auth.createUserWithEmailAndPassword(email: data.email, password: data.pwd).whenComplete(()async{
 
-          await _db.collection("users").add({
+    try {
+        AuthResult _result =  await _auth.createUserWithEmailAndPassword(email: data.email, password: data.pwd).whenComplete(()async{
+          //!Add user infomation
+           await _db.collection("users").add({
             'name':data.name,
             'email':data.email,
             'about':data.about,
@@ -54,9 +64,18 @@ class Auth {
           }).catchError((e){
             print(e);
           });
-
+           await _db.collection("contacts").add({
+             'name':data.name,
+             'email':data.email,
+             'profile':data.profile
+           }).catchError((e){
+             print(e);
+           });
+          //!Add user to contact list
           print("sucees..");
       });
+      await _result.user.sendEmailVerification();
+      return _result;
     } catch (e) {
       print(e.code);
       switch(e.code){
@@ -78,6 +97,10 @@ class Auth {
       }
     }
   }
+
+
+  //Login with google
+
 }
 
 Auth authApi = Auth();

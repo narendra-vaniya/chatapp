@@ -1,13 +1,17 @@
-import 'package:chatapp/ui/widgets/userProfileEdit.dart';
+/*
+    This file containt when user is new update infomation for init
+ */
+
 import 'package:flutter/material.dart';
+import 'package:chatapp/ui/widgets/userProfileEdit.dart';
 import 'package:chatapp/api/reuseWidget.dart';
 
-class UserAccountEditPage extends StatefulWidget {
+class UserInit extends StatefulWidget {
   @override
-  _UserAccountEditPageState createState() => _UserAccountEditPageState();
+  _UserInitState createState() => _UserInitState();
 }
 
-class _UserAccountEditPageState extends State<UserAccountEditPage> {
+class _UserInitState extends State<UserInit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +21,8 @@ class _UserAccountEditPageState extends State<UserAccountEditPage> {
         backgroundColor: reuse.getAppbarColor(),
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/MainPage', (Route) => false);
           },
           icon: Icon(
             Icons.arrow_back_ios,

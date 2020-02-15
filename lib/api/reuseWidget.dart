@@ -1,20 +1,20 @@
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Resue {
   TextStyle getUserTextStyle() {
     return TextStyle(color: Colors.black, fontWeight: FontWeight.w400);
   }
 
-  Color getAppbarColor(){
+  Color getAppbarColor() {
     return Color.fromRGBO(246, 246, 252, 1);
   }
+
   InputDecoration textBoxStyle(text, context) {
     final screen = ScreenInfo(context);
     return InputDecoration(
-      contentPadding: EdgeInsets.symmetric(
-          vertical: screen.getHeight * 0.02,
-          horizontal: screen.getWidth * 0.025),
+      contentPadding: EdgeInsets.all(5),
       hintText: text,
       border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
     );
@@ -34,25 +34,25 @@ class Resue {
 
 //Small font
   TextStyle getSmallTextStyle(context) {
-
     final screen = ScreenInfo(context);
-    print(MediaQuery.of(context).devicePixelRatio);
     return TextStyle(
       color: Colors.black,
       letterSpacing: 1,
     );
   }
+
 //Fittedbox text
-  Widget MyText(msg){
+  Widget MyText(msg) {
     return FittedBox(
       child: Text(msg),
-
     );
   }
+
   TextStyle getButtonTextStyle() {
     return TextStyle(
       color: Colors.white,
       letterSpacing: 1,
+      fontSize: ScreenUtil().setSp(12)
     );
   }
 

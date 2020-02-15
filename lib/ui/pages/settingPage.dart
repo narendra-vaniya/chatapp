@@ -2,6 +2,7 @@
    This page is contain Setting like profile,find friends and delete account.
  */
 
+import 'package:chatapp/api/databaseApi.dart';
 import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/api/screeninfo.dart';
 import 'package:flutter/cupertino.dart';
@@ -19,7 +20,6 @@ class _SettingPageState extends State<SettingPage> {
     return Container(
         width: _screen.getWidth,
         height: _screen.getHeight,
-        //padding: EdgeInsets.only(top: 0,bottom: 15,left: 10,right: 10),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -30,8 +30,6 @@ class _SettingPageState extends State<SettingPage> {
         child: settingComponetDesign(context));
   }
 }
-
-
 
 //Design of setting Page
 settingComponetDesign(context) {
@@ -49,19 +47,28 @@ settingComponetDesign(context) {
         ),
       ),
       //User name and image
-      Card(
-        elevation: 0,
-        child: ListTile(
-          onTap: () {
-            Navigator.pushNamed(context, '/UserProfile');
-          },
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(500),
-            child: Image.asset('images/user.JPG'),
-          ),
-          title: Text("Narendra vaniya"),
-          subtitle: Text("Edit your profile"),
-        ),
+      StreamBuilder(
+        stream: DB.getCurrentUserData(),
+        builder: (context, user) {
+          return (user.connectionState == ConnectionState.active)
+              ? (user.hasData)
+                  ? Card(
+                      elevation: 0,
+                      child: ListTile(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/UserProfile');
+                        },
+                        leading: ClipRRect(
+                            borderRadius: BorderRadius.circular(1000),
+                            child: Image.network(
+                                user.data.documents[0]['profile'],fit: BoxFit.cover,width: 60,height: 60,)),
+                        title: Text("${user.data.documents[0]['name'] ??'asd'}"),
+                        subtitle: Text("${user.data.documents[0]['about']??''}"),
+                      ),
+                    )
+                  : null
+              : Center(child: LinearProgressIndicator(),);
+        },
       ),
       //Divider
       Divider(
@@ -73,6 +80,10 @@ settingComponetDesign(context) {
       Card(
         elevation: 0,
         child: ListTile(
+          onTap: () {
+            DB.getAllContactList();
+            Navigator.pushNamed(context, '/AllContact');
+          },
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(500),
             child: Image.asset('images/find_fri.png'),
