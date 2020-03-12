@@ -42,8 +42,7 @@ ListDesign() {
           },
           contentPadding: EdgeInsets.all(5),
           leading: ClipRRect(
-            child: Image.asset('images/user.JPG',),
-            borderRadius: BorderRadius.circular(200),
+            child:Icon(Icons.group)
 
           ),
           title: Text("Room ${index+1}",style:reuse.getUserTextStyle(),),

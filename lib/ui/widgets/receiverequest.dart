@@ -18,14 +18,14 @@ class _ReceiveRequestState extends State<ReceiveRequest> {
       //!List view Builder
       child: ListView.builder(
         //itemExtent: 4,
-        itemCount: 10,
+        itemCount: 2,
         scrollDirection: Axis.vertical,
         itemBuilder: (context, index) {
           return ListTile(
             contentPadding: EdgeInsets.all(5),
             leading: ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: Image.asset('images/user.JPG'),
+              child:Icon(Icons.account_circle),
             ),
             title: Text("Your name"),
             trailing: FittedBox(

@@ -5,6 +5,7 @@
 import 'package:chatapp/api/databaseApi.dart';
 import 'package:chatapp/api/reuseWidget.dart';
 import 'package:chatapp/api/screeninfo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -81,8 +82,7 @@ settingComponetDesign(context) {
         elevation: 0,
         child: ListTile(
           onTap: () {
-            DB.getAllContactList();
-            Navigator.pushNamed(context, '/AllContact');
+          
           },
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(500),
@@ -113,9 +113,20 @@ settingComponetDesign(context) {
       //!Divider
       Divider(
         color: Theme.of(context).canvasColor,
-        height: 0,
+        height: 50,
         indent: 85,
       ),
+      
+     
+      Center(
+        child: RaisedButton(onPressed: (){
+            FirebaseAuth.instance.signOut();
+            Navigator.pushNamedAndRemoveUntil(context, '/SignIn',(Route q)=>false);
+        },
+        color: Theme.of(context).canvasColor,
+        child: Text("Logout",style: reuse.getButtonTextStyle(),),
+        shape: reuse.getButtonStyle(),),
+      )
     ],
   );
 }
